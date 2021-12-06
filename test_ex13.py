@@ -69,18 +69,21 @@ class TestUserAgent:
             }
         ]
 
-        assert self.response.json()["platform"] == expected_results[0]["user_agent"][0]["platform"], "Actual value of 'Platform' is not 'Mobile'"
-        assert self.response.json()["platform"] == expected_results[1]["user_agent"][0]["platform"], "Actual value of 'Platform' is not 'Mobile'"
-        assert self.response.json()["platform"] == expected_results[2]["user_agent"][0]["platform"], "Actual value of 'Platform' is not 'Googlebot'"
-        assert self.response.json()["platform"] == expected_results[3]["user_agent"][0]["platform"], "Actual value of 'Platform' is not 'Web'"
-        assert self.response.json()["platform"] == expected_results[4]["user_agent"][0]["platform"], "Actual value of 'Platform' is not 'Mobile'"
-        assert self.response.json()["browser"] == expected_results[0]["user_agent"][0]["browser"], "Actual value of 'Browser' is not 'No'"
-        assert self.response.json()["browser"] == expected_results[1]["user_agent"][0]["browser"], "Actual value of 'Browser' is not 'Chrome'"
-        assert self.response.json()["browser"] == expected_results[2]["user_agent"][0]["browser"], "Actual value of 'Browser' is not 'Unknown'"
-        assert self.response.json()["browser"] == expected_results[3]["user_agent"][0]["browser"], "Actual value of 'Browser' is not 'Chrome'"
-        assert self.response.json()["browser"] == expected_results[4]["user_agent"][0]["device"], "Actual value of 'Browser' is not 'No'"
-        assert self.response.json()["device"] == expected_results[0]["user_agent"][0]["device"], "Actual value of 'Device' is not 'Android'"
-        assert self.response.json()["device"] == expected_results[1]["user_agent"][0]["device"], "Actual value of 'Device' is not 'iOS'"
-        assert self.response.json()["device"] == expected_results[2]["user_agent"][0]["device"], "Actual value of 'Device' is not 'Unknown'"
-        assert self.response.json()["device"] == expected_results[3]["user_agent"][0]["device"], "Actual value of 'Device' is not 'No'"
-        assert self.response.json()["device"] == expected_results[4]["user_agent"][0]["device"], "Actual value of 'Device' is not 'iPhone'"
+        platform_value = self.response.json()["platform"]
+        browser_value = self.response.json()["browser"]
+        device_value = self.response.json()["device"]
+        assert self.response.json()["platform"] == expected_results[0]["user_agent"][0]["platform"], f"Actual value of 'Platform' is not 'Mobile'. Platform value is {platform_value}"
+        assert self.response.json()["platform"] == expected_results[1]["user_agent"][0]["platform"], f"Actual value of 'Platform' is not 'Mobile'. Platform value is {platform_value}"
+        assert self.response.json()["platform"] == expected_results[2]["user_agent"][0]["platform"], f"Actual value of 'Platform' is not 'Googlebot'. Platform value is {platform_value}"
+        assert self.response.json()["platform"] == expected_results[3]["user_agent"][0]["platform"], f"Actual value of 'Platform' is not 'Web'. Platform value is {platform_value}"
+        assert self.response.json()["platform"] == expected_results[4]["user_agent"][0]["platform"], f"Actual value of 'Platform' is not 'Mobile'. Platform value is {platform_value}"
+        assert self.response.json()["browser"] == expected_results[0]["user_agent"][0]["browser"], f"Actual value of 'Browser' is not 'No'. Browser value is {browser_value}"
+        assert self.response.json()["browser"] == expected_results[1]["user_agent"][0]["browser"], f"Actual value of 'Browser' is not 'Chrome'. Browser value is {browser_value}"
+        assert self.response.json()["browser"] == expected_results[2]["user_agent"][0]["browser"], f"Actual value of 'Browser' is not 'Unknown'. Browser value is {browser_value}"
+        assert self.response.json()["browser"] == expected_results[3]["user_agent"][0]["browser"], f"Actual value of 'Browser' is not 'Chrome'. Browser value is {browser_value}"
+        assert self.response.json()["browser"] == expected_results[4]["user_agent"][0]["device"], f"Actual value of 'Browser' is not 'No'. Browser value is {browser_value}"
+        assert self.response.json()["device"] == expected_results[0]["user_agent"][0]["device"], f"Actual value of 'Device' is not 'Android'. Device value is {device_value}"
+        assert self.response.json()["device"] == expected_results[1]["user_agent"][0]["device"], f"Actual value of 'Device' is not 'iOS'. Device value is {device_value}"
+        assert self.response.json()["device"] == expected_results[2]["user_agent"][0]["device"], f"Actual value of 'Device' is not 'Unknown'. Device value is {device_value}"
+        assert self.response.json()["device"] == expected_results[3]["user_agent"][0]["device"], f"Actual value of 'Device' is not 'No'. Device value is {device_value}"
+        assert self.response.json()["device"] == expected_results[4]["user_agent"][0]["device"], f"Actual value of 'Device' is not 'iPhone'. Device value is {device_value}"
