@@ -15,7 +15,7 @@ class TestUserAgent:
     def test_user_agent(self, parameter):
         self.response = requests.get("https://playground.learnqa.ru/ajax/api/user_agent_check",
                                 headers={"User-Agent": parameter})
-        self.response_parsed = self.response.json()
+
         expected_results = [
             {
                 "user_agent": [
@@ -84,11 +84,3 @@ class TestUserAgent:
         assert self.response.json()["device"] == expected_results[2]["user_agent"][0]["device"], "Actual value of 'Device' is not 'Unknown'"
         assert self.response.json()["device"] == expected_results[3]["user_agent"][0]["device"], "Actual value of 'Device' is not 'No'"
         assert self.response.json()["device"] == expected_results[4]["user_agent"][0]["device"], "Actual value of 'Device' is not 'iPhone'"
-
-
-
-
-
-
-
-
