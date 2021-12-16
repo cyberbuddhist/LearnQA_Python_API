@@ -43,6 +43,9 @@ class TestUserGet(BaseCase):
             headers={"x-csrf-token": token},
             cookies={"auth_sid": auth_sid}
         )
-        expected_fields = ["username", "email", "firstName", "lastName"]
-        Assertions.assert_json_has_keys(response2, expected_fields)
+
+        Assertions.assert_json_has_key(response2, "username")
+        Assertions.assert_json_has_not_key(response2, "email")
+        Assertions.assert_json_has_not_key(response2, "firstName")
+        Assertions.assert_json_has_not_key(response2, "lastName")
 
