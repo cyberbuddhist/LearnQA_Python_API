@@ -37,5 +37,7 @@ class TestBrutePassword:
                 cookies={"auth_cookie":auth_sid_value})
             #print(response2.content)
             if response2.content != "You are NOT authorized":
-                print(response2.content)
+                #print(response2.content)
                 print(i) #вывести правильный пароль
+            else:
+                pass
