@@ -43,4 +43,16 @@ class Assertions:
         except json.JSONDecodeError:
             assert False, f"Response is not in JSON format. Response text is '{response.text}'"
 
-        assert name not in response_as_dict, f"Response JSON shouldn't have key '{name}. But it's present"
+        assert name not in response_as_dict, f"Response JSON shouldn't have key '{name}'. But it's present"
+
+    @staticmethod
+    def assert_check_user_by_id_number(response: Response, user_id, expected_id_value, error_message):
+        response_as_text = response.text
+
+        assert "user_id" in response_as_text, f"Your id '{user_id}' in request is not correct. And response text is '{response.text}'"
+
+    @staticmethod
+    def assert_check_user_by_email(response: Response, email, expected_id_value, error_message):
+        response_as_text = response.text
+
+        assert email in response_as_text, f"You can't delete user with email '{email}'. And response text is '{response.text}'"
