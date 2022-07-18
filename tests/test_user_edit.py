@@ -1,8 +1,15 @@
 from lib.my_requests import MyRequests
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
+import allure
+import pytest
 
+
+@allure.epic("Editing user cases")
 class TestUserEdit(BaseCase):
+    @allure.description("This test edits new created user")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.step
     def test_edit_just_created_user(self):
         #REGISTER
         register_data = self.prepare_registration_data()
@@ -48,8 +55,12 @@ class TestUserEdit(BaseCase):
             new_name,
             "Wrong name of the user after edit"
         )
-    '''
+
     #изменить данные пользователя, будучи неавторизованными
+    @allure.description("This test edits unauthorized user")
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.xfail(reason='this test is expecting failure')
+    @allure.step
     def test_edit_unauthorised_user(self):
         # REGISTER
         register_data = self.prepare_registration_data()
@@ -83,6 +94,9 @@ class TestUserEdit(BaseCase):
         Assertions.assert_code_status(response3, 200)
 
     #изменить данные пользователя, будучи авторизованными другим пользователем
+    @allure.description("This test edits user being authorized by another user")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @pytest.mark.xfail(reason='this test is expecting failure')
     def test_edit_user_by_another_authorised_user(self):
         # REGISTER
         register_data = self.prepare_registration_data()
@@ -130,6 +144,9 @@ class TestUserEdit(BaseCase):
         )
 
     #изменить email пользователя, будучи авторизованными тем же пользователем, на новый email без символа @
+    @allure.description("This test edits user's email to email without @ symbol")
+    @allure.severity(allure.severity_level.TRIVIAL)
+    @pytest.mark.xfail(reason='this test is expecting failure')
     def test_edit_email_without_dot(self):
         # REGISTER
         register_data = self.prepare_registration_data()
@@ -177,6 +194,9 @@ class TestUserEdit(BaseCase):
         )
 
     #изменить firstName пользователя, будучи авторизованными тем же пользователем, на очень короткое значение в один символ
+    @allure.description("This test edits user's first name")
+    @allure.severity(allure.severity_level.TRIVIAL)
+    @pytest.mark.xfail(reason='this test is expecting failure')
     def test_edit_small_firstname(self):
         # REGISTER
         register_data = self.prepare_registration_data()
@@ -222,4 +242,3 @@ class TestUserEdit(BaseCase):
             new_name,
             "Wrong name of the user after edit"
         )
-    '''

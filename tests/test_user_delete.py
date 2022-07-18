@@ -1,10 +1,14 @@
-import email
-
 from lib.my_requests import MyRequests
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
+import allure
+import pytest
 
+@allure.epic("Deleting user cases")
 class TestUserDelete(BaseCase):
+    @allure.description("This test tries to delete user by id=2")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @pytest.mark.xfail(reason='this test is expecting failure')
     def test_user_delete(self):
         data = {
             'email': 'vinkotov@example.com',
@@ -31,7 +35,9 @@ class TestUserDelete(BaseCase):
             f"You want to delete user with id {user_id_from_auth_method}, but not user with id 2"
         )
 
-
+    @allure.feature
+    @allure.description("This test deletes user")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_positiv_user_delete(self):
         data = {
             'email': 'vinkotov@example.com',
@@ -59,7 +65,10 @@ class TestUserDelete(BaseCase):
 
         Assertions.assert_code_status(response3, 404)
 
-
+    @allure.title("This test tries to delete user being authorized by another user")
+    @allure.issue('1', 'Flaky test')
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.xfail(reason='this test is expecting failure')
     def test_delete_user_by_another_user_auth(self):
         data = {
             'email': 'vinkotov@example.com',
